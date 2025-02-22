@@ -1,4 +1,10 @@
-{ pkgs, lib, config, inputs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
 
 {
   # https://devenv.sh/basics/
@@ -9,6 +15,7 @@
 
   languages.python.enable = true;
   languages.python.uv.enable = true;
+  languages.python.uv.sync.enable = true;
 
   # https://devenv.sh/processes/
   # processes.cargo-watch.exec = "cargo-watch";
@@ -25,5 +32,11 @@
   # https://devenv.sh/tests/
 
   # https://devenv.sh/git-hooks/
-  # git-hooks.hooks.shellcheck.enable = true;
+  git-hooks.hooks = {
+    end-of-file-fixer.enable = true;
+    nixfmt-rfc-style.enable = true;
+    ruff.enable = true;
+    ruff-format.enable = true;
+    trim-trailing-whitespace.enable = true;
+  };
 }
